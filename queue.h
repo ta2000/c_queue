@@ -10,6 +10,7 @@ struct queue
     char* start;
     char* end;
     size_t max_elements;
+    size_t elements_in_use;
     size_t element_size;
 };
 
