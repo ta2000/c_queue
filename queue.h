@@ -20,13 +20,14 @@ void queue_init(
     size_t max_elements
 );
 
-void queue_add(
+void queue_enqueue(
     struct queue* queue,
-    void* data
+    void* value
 );
 
-char* queue_retrieve(
-    struct queue* queue
+void* queue_dequeue(
+    struct queue* queue,
+    void* value
 );
 
 void queue_destroy(

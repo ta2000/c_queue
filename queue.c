@@ -15,7 +15,7 @@ void queue_init(struct queue* queue, size_t element_size, size_t max_elements)
     queue->end = queue->start;
 }
 
-void queue_add(struct queue* queue, void* value)
+void queue_enqueue(struct queue* queue, void* value)
 {
     assert(queue->elements_in_use < queue->max_elements);
     queue->elements_in_use++;
@@ -28,7 +28,7 @@ void queue_add(struct queue* queue, void* value)
     }
 }
 
-char* queue_retrieve(struct queue* queue)
+void* queue_dequeue(struct queue* queue, void* value)
 {
     assert(queue->elements_in_use > 0);
     queue->elements_in_use--;
@@ -37,6 +37,10 @@ char* queue_retrieve(struct queue* queue)
         queue->start = queue->data;
 
     queue->start += queue->element_size;
+
+    if (value)
+        memcpy(value, queue->start - queue->element_size, queue->element_size);
+
     return queue->start - queue->element_size;
 }
 
